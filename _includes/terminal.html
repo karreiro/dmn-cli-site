@@ -1,0 +1,81 @@
+{% comment %}
+<!--
+  ~ Copyright 2020 Red Hat, Inc. and/or its affiliates.
+  ~ 
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ 
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~ 
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+{% endcomment %}
+
+<div class="window window--terminal">
+  <div class="window__header">
+    <div class="window__header__icon window__header__icon--red"></div>
+    <div class="window__header__icon window__header__icon--yellow"></div>
+    <div class="window__header__icon window__header__icon--green"></div>
+  </div>
+  <div class="window__body"><span id="terminal-content"></span></div>
+
+  <div id="preview" class="window window--preview">
+    <div class="window__header">
+      <div class="window__header__icon window__header__icon--red"></div>
+      <div class="window__header__icon window__header__icon--yellow"></div>
+      <div class="window__header__icon window__header__icon--green"></div>
+    </div>
+    <div class="window__body"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  (function () {
+    function terminalLines(lines) {
+      return [lines.join("<br />")];
+    }
+
+    function showPreview() {
+      var preview = document.querySelector("#preview");
+
+      preview.classList.add("visible");
+
+      setTimeout(function () {
+        preview.classList.remove("visible");
+      }, 2000);
+    }
+
+    new Typed("#terminal-content", {
+      strings: terminalLines([
+        "~ $ dmn-cli inspect ~/my-dmn-model.dmn^500",
+        "`  ─ Version: <span class='green'>DMN 1.2</span>`",
+        "`  ─ DMN nodes:`",
+        "`     └ <span class='green'>Should be suspended? (Decision)</span>`",
+        "`     └ <span class='green'>Fine (Decision)</span>`",
+        "`     └ <span class='green'>Violation (Input Data)</span>`",
+        "`     └ <span class='green'>Driver (Input Data)</span>`",
+        "`  ─ DMN data types:`",
+        "`     └ <span class='green'>tDriver (Structure)</span>`",
+        "`         └ <span class='green'>Name (String)</span>`",
+        "`         └ <span class='green'>Points (Number)</span>`",
+        "`     └ <span class='green'>tFine (Structure)</span>`",
+        "`         └ <span class='green'>Amount (Number)</span>`",
+        "`         └ <span class='green'>Points (Number)</span>`",
+        "`     └ <span class='green'>tViolation (Structure)</span>`",
+        "`         └ <span class='green'>Type (String)</span>`",
+        "`         └ <span class='green'>Actual Speed (Number)</span>`",
+        "`         └ <span class='green'>Speed Limit (Number)</span>`",
+        "~ $ dmn-cli preview ~/my-dmn-model.dmn^1000",
+        "`Processing DMN model preview... [====================] (10/10)`",
+        "~ $ ",
+      ]),
+      onComplete: showPreview,
+      typeSpeed: 20,
+    });
+  })();
+</script>

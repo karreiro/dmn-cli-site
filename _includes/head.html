@@ -1,0 +1,54 @@
+{% comment %}
+<!--
+  ~ Copyright 2020 Red Hat, Inc. and/or its affiliates.
+  ~ 
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ 
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~ 
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+{% endcomment %}
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="{{ site.author }}" />
+
+  <title>
+    {{ site.title | escape }} {% if page.title %} | {{ page.title | escape }} {%
+    endif %}
+  </title>
+  <meta
+    name="description"
+    content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}"
+  />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=block"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=block"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/normalize.css" />
+  <link rel="stylesheet" href="/assets/main.css" />
+  <link
+    rel="canonical"
+    href="{{ page.url | replace:'index.html','' | absolute_url }}"
+  />
+  <script defer src="/assets/js/main.js"></script>
+  <script src="/assets/js/typed.min.js"></script>
+
+  {% if jekyll.environment == 'production' and site.google_analytics %} {%
+  include google-analytics.html %} {% endif %}
+</head>
