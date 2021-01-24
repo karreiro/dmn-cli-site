@@ -20,15 +20,45 @@ dmn-cli --version
 
 #### Import Java classes as data types
 
-Use the `dmn-cli fetch-types <java_project_path>` command to generate a **types.dmn** model with all types from a Java project.
+Use the `dmn-cli fetch-types <JAVA_PROJECT_PATH>` command to generate a **types.dmn** model with all types from a Java project.
 
 ```bash
 dmn-cli fetch-types ~/Mortgages
 ```
 
+#### Import JSON objects as data types
+
+Use the `dmn-cli fetch-types <JSON_FILE_PATH>` command to generate a **types.dmn** model with all types defined into the JSON object.
+
+```bash
+dmn-cli fetch-types data-types.json
+```
+
+Here's an example of a JSON object with some data types:
+
+```
+[
+  {
+    "name": "tPerson",
+    "children": [
+      { "name": "id", "type": "tUUID" },
+      { "name": "name", "type": "string" },
+      { "name": "age", "type": "string" }
+    ]
+  },
+  {
+    "name": "tUUID",
+    "children": [
+      { "name": "prefix", "type": "string" },
+      { "name": "hash", "type": "string" }
+    ]
+  }
+]
+```
+
 #### Preview the model
 
-Use the `dmn-cli preview <dmn_model_path>` command to generate a **diagram.png** file and automatically open this diagram preview.
+Use the `dmn-cli preview <DMN_MODEL_PATH>` command to generate a **diagram.png** file and automatically open this diagram preview.
 
 ```bash
 dmn-cli preview ~/my-model.dmn
@@ -36,7 +66,7 @@ dmn-cli preview ~/my-model.dmn
 
 #### Inspect elements
 
-Use the `dmn-cli inspect <dmn_model_path>` command to list the main DMN model elements and version.
+Use the `dmn-cli inspect <DMN_MODEL_PATH>` command to list the main DMN model elements and version.
 
 ```bash
 dmn-cli inspect ~/my-model.dmn
